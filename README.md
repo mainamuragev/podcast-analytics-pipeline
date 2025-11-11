@@ -83,3 +83,12 @@ This pipeline showcases:
 - Local relevance for media analytics in Kenya and beyond
 
 ---
+
+<img width="1920" height="1080" alt="Screenshot 2025-11-11 181125" src="https://github.com/user-attachments/assets/e63c6f97-ea4a-4455-880a-b6e1e68a936d" />
+
+
+<img width="1920" height="1080" alt="Screenshot 2025-11-11 180032" src="https://github.com/user-attachments/assets/59b3f313-631d-4776-be2b-9c5eaf7484df" />
+
+
+<img width="1920" height="1080" alt="Screenshot 2025-11-11 174555" src="https://github.com/user-attachments/assets/8268a2c2-7b84-4ab1-a900-19c33f87faa5" />
+
