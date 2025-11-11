@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: joe_rogan_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: joerogan
+      POSTGRES_PASSWORD: joeroganpass
+      POSTGRES_DB: joerogan_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+
+  airflow:
+    image: apache/airflow:2.8.1
+    container_name: joe_rogan_airflow
+    restart: always
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=SequentialExecutor
+      - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://joerogan:joeroganpass@postgres:5432/joerogan_db
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    command: airflow standalone
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: joe_rogan_grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./grafana:/var/lib/grafana
+    depends_on:
+      - postgres
+
+volumes:
+  postgres:
