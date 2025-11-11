@@ -1,16 +1,14 @@
+import os
 import pandas as pd
 from sqlalchemy import create_engine
+from dotenv import load_dotenv
 
-# Path to your transformed CSV
+load_dotenv()
+
 CSV_PATH = "data/joe_rogan_videos.csv"
+DB_URL = os.getenv("DB_URL")
 
-# Aiven PostgreSQL connection string
-DB_URL = "postgresql://avnadmin:AVNS_KgyTPTbCPZDCKA56StT@pg-583808d-muragevincent39-e823.i.aivencloud.com:14040/defaultdb?sslmode=require"
-
-# Load CSV
 df = pd.read_csv(CSV_PATH)
-
-# Connect and push to PostgreSQL
 engine = create_engine(DB_URL)
 df.to_sql("joe_rogan_videos", engine, if_exists="append", index=False)
 

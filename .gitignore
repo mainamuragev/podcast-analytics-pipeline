@@ -7,3 +7,4 @@ airflow/logs/
 airflow/tmp/
 grafana/data/
 postgres/data/
+venv/
